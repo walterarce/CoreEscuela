@@ -2,5 +2,7 @@ body{
      color:darkolivegreen;
     text-align: left;
     font-family: Arial;
+    border-block: initial;
+    border-inline-color: unset;
 
 }
