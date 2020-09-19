@@ -26,11 +26,7 @@ namespace CoreEscuela
             WriteLine($"Unique:{ob.UniqueId}");
             WriteLine($"Tipo:{ob.GetType()}");
 
-            var objDummy = new ObjetoEscuelaBase() {Nombre="Frank Underwood"};
-            Printer.DibujarTitulo("ObjetoEscuelaBase");
-            WriteLine($"Alumno:{objDummy.Nombre}");
-            WriteLine($"Unique:{objDummy.UniqueId}");
-            WriteLine($"Tipo:{objDummy.GetType()}");
+          engine.Escuela.LimpiarLugar();
 
             var evaluacion = new Evaluacion(){Nombre="Evaluacion de matematica", Nota=4.5f};
             Printer.DibujarTitulo("Evaluacion");
