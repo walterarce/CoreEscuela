@@ -24,5 +24,7 @@ namespace CoreEscuela.Entidades
         {
             return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela} {System.Environment.NewLine} Pais: {Pais}, Ciudad:{Ciudad}";
         }
+
+       
     }
 }

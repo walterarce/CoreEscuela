@@ -13,39 +13,9 @@ namespace CoreEscuela
             var engine = new EscuelaEngine();
             engine.Inicializar();
             
-           var alumnoTest = new Alumno{Nombre="Claire Underwood"};
-            ImprimirCursosEscuela(engine.Escuela);
-            Printer.DibujarTitulo("Alumno");
-            WriteLine($"Alumno:{alumnoTest.Nombre}");
-            WriteLine($"Unique:{alumnoTest.UniqueId}");
-            WriteLine($"Tipo:{alumnoTest.GetType()}");
-            ObjetoEscuelaBase ob = alumnoTest;
-
-            Printer.DibujarTitulo("ObjetoEscuela");
-            WriteLine($"Alumno:{ob.Nombre}");
-            WriteLine($"Unique:{ob.UniqueId}");
-            WriteLine($"Tipo:{ob.GetType()}");
-
-            var objDummy = new ObjetoEscuelaBase() {Nombre="Frank Underwood"};
-            Printer.DibujarTitulo("ObjetoEscuelaBase");
-            WriteLine($"Alumno:{objDummy.Nombre}");
-            WriteLine($"Unique:{objDummy.UniqueId}");
-            WriteLine($"Tipo:{objDummy.GetType()}");
-
-            var evaluacion = new Evaluacion(){Nombre="Evaluacion de matematica", Nota=4.5f};
-            Printer.DibujarTitulo("Evaluacion");
-            WriteLine($"Evaluacion:{evaluacion.Nombre}");
-            WriteLine($"Evaluacion:{evaluacion.UniqueId}");
-            WriteLine($"Evaluacion:{evaluacion.Nota}");
-            WriteLine($"Evaluacion:{evaluacion.GetType()}");
-
-            //ob = evaluacion;
-            if (ob is Alumno)
-            {
-                Alumno alumnoRecuperado = (Alumno) ob;
-            }
-
-            Alumno alumnoRecuperado2 =  ob as Alumno; //esto es recomendado agrego comentario para probar ignore
+           Printer.DibujarTitulo("Bienvenidos a la Escuela");
+          
+           ImprimirCursosEscuela(engine.Escuela);
 
             var listaobjetos = engine.GetObjetoEscuela();
 
