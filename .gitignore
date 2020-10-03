@@ -1,6 +1,6 @@
 *.dat
 *.exe
 /bin/
-/obj
+/obj/
 /bin/Debug/netcoreapp3.1
 /bin/
