@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
-    public class Escuela : ObjetoEscuelaBase
+    public class Escuela : ObjetoEscuelaBase, ILugar
     {
 
       
@@ -25,6 +25,9 @@ namespace CoreEscuela.Entidades
             return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela} {System.Environment.NewLine} Pais: {Pais}, Ciudad:{Ciudad}";
         }
 
-       
+        public void LimpiarLugar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
