@@ -41,7 +41,7 @@ namespace CoreEscuela
                 Alumno alumnoRecuperado = (Alumno) ob;
             }
 
-            Alumno alumnoRecuperado2 =  ob as Alumno; //esto es recomendado
+            Alumno alumnoRecuperado2 =  ob as Alumno; //esto es recomendado esto trae el objeto
 
             var listaobjetos = engine.GetObjetoEscuela();
 
