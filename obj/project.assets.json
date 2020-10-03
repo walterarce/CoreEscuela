@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WalterJavier.Arce\\Documents\\Platzi\\codigo\\CoreEscuela\\CoreEscuela.csproj",
+      "projectUniqueName": "C:\\Users\\WalterJavier.Arce\\Documents\\Platzi\\CoreEscuela\\CoreEscuela.csproj",
       "projectName": "CoreEscuela",
-      "projectPath": "C:\\Users\\WalterJavier.Arce\\Documents\\Platzi\\codigo\\CoreEscuela\\CoreEscuela.csproj",
+      "projectPath": "C:\\Users\\WalterJavier.Arce\\Documents\\Platzi\\CoreEscuela\\CoreEscuela.csproj",
       "packagesPath": "C:\\Users\\WalterJavier.Arce\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\WalterJavier.Arce\\Documents\\Platzi\\codigo\\CoreEscuela\\obj\\",
+      "outputPath": "C:\\Users\\WalterJavier.Arce\\Documents\\Platzi\\CoreEscuela\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\WalterJavier.Arce\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
