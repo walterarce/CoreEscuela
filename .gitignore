@@ -1,0 +1,5 @@
+*.dat
+*.exe
+/bin/
+/obj
+/bin/Debug/netcoreapp3.1
