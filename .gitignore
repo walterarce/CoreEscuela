@@ -1,5 +1,9 @@
 *.dat
 *.exe
+<<<<<<< HEAD
 /bin/
 /obj
 /bin/Debug/netcoreapp3.1
+=======
+/bin/
+>>>>>>> d20a968e3c33dd19cad0ac04925fe3351a243d90
