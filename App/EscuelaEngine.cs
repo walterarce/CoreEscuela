@@ -22,13 +22,9 @@ namespace CoreEscuela.Entidades
 
             CargarCursos();
             CargarAsignaturas();
-             
-             foreach (var curso in Escuela.Cursos)
-             {
-                 curso.Alumnos.AddRange(GenerarAlumnosRamdon(20));
-             }
-             
             CargarEvaluaciones();
+            
+            
         }
 
         private void CargarEvaluaciones()
@@ -110,7 +106,7 @@ namespace CoreEscuela.Entidades
 
         private void CargarCursos()
         {
-            Random rnd = new Random();
+           
 
             
             
@@ -127,7 +123,8 @@ namespace CoreEscuela.Entidades
             {Nombre="501", Jornada = TiposJornada.Mañana},
             new Curso()
             {Nombre="501" , Jornada= TiposJornada.Tarde} };
-
+            
+            Random rnd = new Random();
             foreach (var curso in Escuela.Cursos)
             {
                 int cantidadcurso = rnd.Next(5,20);

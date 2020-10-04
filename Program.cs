@@ -1,7 +1,7 @@
 ﻿using CoreEscuela.Entidades;
 using static System.Console;
 using CoreEscuela.Util;
-
+using System.Linq;
 namespace CoreEscuela
 {
     
@@ -17,8 +17,12 @@ namespace CoreEscuela
           
            ImprimirCursosEscuela(engine.Escuela);
 
-            var listaobjetos = engine.GetObjetoEscuela();
-            engine.Escuela.LimpiarLugar();
+            var listaObjetos = engine.GetObjetoEscuela();
+
+            var listaILugar = from obj in listaObjetos
+            where obj is ILugar
+                select (ILugar) obj;
+           //engine.Escuela.LimpiarLugar();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
