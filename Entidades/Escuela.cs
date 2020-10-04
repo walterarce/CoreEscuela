@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CoreEscuela.Util;
 
 namespace CoreEscuela.Entidades
 {
@@ -27,7 +28,10 @@ namespace CoreEscuela.Entidades
 
         public void LimpiarLugar()
         {
-            throw new NotImplementedException();
+           Printer.DibujarLinea(10);
+           Console.WriteLine("Limpiando....");
+           Printer.Beep(15000,cantidad:3);
+           Console.WriteLine($"Escuela {Nombre} Limpio");
         }
     }
 }
