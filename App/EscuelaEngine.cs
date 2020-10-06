@@ -131,8 +131,9 @@ namespace CoreEscuela.Entidades
             new Curso()
             {Nombre="501", Jornada = TiposJornada.Mañana},
             new Curso()
-            {Nombre="501" , Jornada= TiposJornada.Tarde} };
-            
+            {Nombre="601" , Jornada= TiposJornada.Tarde} ,
+            new Curso()
+            {Nombre="701" , Jornada= TiposJornada.Tarde} };
             Random rnd = new Random();
             foreach (var curso in Escuela.Cursos)
             {
