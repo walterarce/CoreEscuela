@@ -26,7 +26,7 @@ namespace CoreEscuela.Entidades
             
             
         }
-
+#region Metodos de carga
         private void CargarEvaluaciones()
         {
             var lista = new List<Evaluacion>();
@@ -86,24 +86,33 @@ namespace CoreEscuela.Entidades
                 return listaAlumnos.OrderBy((al)=>al.UniqueId).Take(cantidad).ToList();
         }
 
-        public List<ObjetoEscuelaBase> GetObjetoEscuela()
+        public List<ObjetoEscuelaBase> GetObjetoEscuela(
+            bool traeEvaluaciones = true,
+            bool traerAlumnos= true,
+            bool traerAsignaturas= true,
+            bool traerCursos= true)
         {
             var listaobj=new List<ObjetoEscuelaBase>();
                 listaobj.Add(Escuela);
+              if(traerCursos)
                 listaobj.AddRange(Escuela.Cursos);
                 foreach (var curso in Escuela.Cursos)
                 {
+                    if(traerAsignaturas)
                     listaobj.AddRange(curso.Asignaturas);
                     listaobj.AddRange(curso.Alumnos);
 
-                    foreach (var alumno in curso.Alumnos)
+                    if(traeEvaluaciones)
                     {
-                        listaobj.AddRange(alumno.Evaluaciones);
+                        foreach (var alumno in curso.Alumnos)
+                        {
+                            listaobj.AddRange(alumno.Evaluaciones);
+                        }
                     }
                 }
             return listaobj;
         }
-
+    
         private void CargarCursos()
         {
            
@@ -132,4 +141,5 @@ namespace CoreEscuela.Entidades
             }
         }
     }
+    #endregion
 }
