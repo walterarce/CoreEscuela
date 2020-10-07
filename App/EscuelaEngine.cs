@@ -86,27 +86,48 @@ namespace CoreEscuela.Entidades
                 return listaAlumnos.OrderBy((al)=>al.UniqueId).Take(cantidad).ToList();
         }
 
-        public List<ObjetoEscuelaBase> GetObjetoEscuela(
-            bool traeEvaluaciones = true,
-            bool traerAlumnos= true,
-            bool traerAsignaturas= true,
-            bool traerCursos= true)
+        public List<ObjetoEscuelaBase>  GetObjetoEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            out int conteoAlumnos,
+            bool traeEvaluaciones=true,
+            bool traerAlumnos=true,
+            bool traerAsignaturas=true,
+            bool traerCursos=true
+            )
         {
+             conteoEvaluaciones=0;
+             
+             conteoAsignaturas=conteoCursos=conteoAlumnos=0;
+          
             var listaobj=new List<ObjetoEscuelaBase>();
                 listaobj.Add(Escuela);
               if(traerCursos)
+              {
                 listaobj.AddRange(Escuela.Cursos);
+                conteoCursos =Escuela.Cursos.Count;
+              }
                 foreach (var curso in Escuela.Cursos)
                 {
+                   
                     if(traerAsignaturas)
-                    listaobj.AddRange(curso.Asignaturas);
-                    listaobj.AddRange(curso.Alumnos);
+                    {
+                        conteoAsignaturas += curso.Asignaturas.Count;                        
+                        listaobj.AddRange(curso.Asignaturas);
+                    }
+                    if(traerAlumnos)
+                    {
+                       conteoAlumnos += curso.Alumnos.Count;
+                       listaobj.AddRange(curso.Alumnos);
+                    }
 
                     if(traeEvaluaciones)
                     {
                         foreach (var alumno in curso.Alumnos)
                         {
                             listaobj.AddRange(alumno.Evaluaciones);
+                            conteoEvaluaciones += alumno.Evaluaciones.Count;
                         }
                     }
                 }
@@ -115,25 +136,14 @@ namespace CoreEscuela.Entidades
     
         private void CargarCursos()
         {
-           
-
-            
-            
             Escuela.Cursos = new List<Curso> {
-            new Curso()
-            {Nombre="101", Jornada = TiposJornada.Mañana},
-            new Curso()
-            {Nombre="202", Jornada = TiposJornada.Mañana},
-            new Curso()
-            {Nombre="303", Jornada = TiposJornada.Tarde},
-            new Curso()
-            {Nombre="401", Jornada = TiposJornada.Mañana},
-            new Curso()
-            {Nombre="501", Jornada = TiposJornada.Mañana},
-            new Curso()
-            {Nombre="601" , Jornada= TiposJornada.Tarde} ,
-            new Curso()
-            {Nombre="701" , Jornada= TiposJornada.Tarde} };
+                        new Curso()  {Nombre="101", Jornada = TiposJornada.Mañana},
+                        new Curso()  {Nombre="202", Jornada = TiposJornada.Mañana},
+                        new Curso()  {Nombre="303", Jornada = TiposJornada.Tarde},
+                        new Curso()  {Nombre="401", Jornada = TiposJornada.Mañana},
+                        new Curso()  {Nombre="501", Jornada = TiposJornada.Mañana},
+                        new Curso()  {Nombre="601" , Jornada= TiposJornada.Tarde} ,
+                        new Curso()  {Nombre="701" , Jornada= TiposJornada.Tarde} };
             Random rnd = new Random();
             foreach (var curso in Escuela.Cursos)
             {
