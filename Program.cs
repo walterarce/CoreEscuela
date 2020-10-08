@@ -17,10 +17,8 @@ namespace CoreEscuela
           
            ImprimirCursosEscuela(engine.Escuela);
             int dummy = 0;
-            var listaObjetos = engine.GetObjetoEscuela (out  int contadorEvaluaciones,
-             out dummy,
-             out dummy,
-             out dummy);
+            var listaObjetos = engine.GetObjetoEscuela ( );
+
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)

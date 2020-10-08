@@ -84,9 +84,52 @@ namespace CoreEscuela.Entidades
                               select new Alumno{ Nombre=$"{n1} {n2} {a1}"};
               
                 return listaAlumnos.OrderBy((al)=>al.UniqueId).Take(cantidad).ToList();
-        }
+ 
+       }
 
-        public List<ObjetoEscuelaBase>  GetObjetoEscuela(
+       public IReadOnlyCollection<ObjetoEscuelaBase>  GetObjetoEscuela(
+            bool traeEvaluaciones=true,
+            bool traerAlumnos=true,
+            bool traerAsignaturas=true,
+            bool traerCursos=true
+            )
+            {
+                return GetObjetoEscuela(out int dummy, out dummy , out dummy ,out dummy);
+            }
+        public IReadOnlyCollection<ObjetoEscuelaBase>  GetObjetoEscuela(
+            out int conteoEvaluaciones,
+            bool traeEvaluaciones=true,
+            bool traerAlumnos=true,
+            bool traerAsignaturas=true,
+            bool traerCursos=true
+            )
+            {
+                return GetObjetoEscuela(out conteoEvaluaciones);
+            }
+        public IReadOnlyCollection<ObjetoEscuelaBase>  GetObjetoEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            bool traeEvaluaciones=true,
+            bool traerAlumnos=true,
+            bool traerAsignaturas=true,
+            bool traerCursos=true
+            )
+            {
+                return GetObjetoEscuela(out conteoEvaluaciones, out conteoCursos);
+            }
+        public IReadOnlyCollection<ObjetoEscuelaBase>  GetObjetoEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            bool traeEvaluaciones=true,
+            bool traerAlumnos=true,
+            bool traerAsignaturas=true,
+            bool traerCursos=true
+            )
+            {
+                return GetObjetoEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas);
+            }
+        public IReadOnlyCollection<ObjetoEscuelaBase>  GetObjetoEscuela(
             out int conteoEvaluaciones,
             out int conteoCursos,
             out int conteoAsignaturas,
@@ -131,7 +174,7 @@ namespace CoreEscuela.Entidades
                         }
                     }
                 }
-            return listaobj;
+            return listaobj.AsReadOnly();
         }
     
         private void CargarCursos()
