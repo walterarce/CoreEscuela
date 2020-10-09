@@ -2,6 +2,8 @@
 using static System.Console;
 using CoreEscuela.Util;
 using System.Linq;
+using System.Collections.Generic;
+
 namespace CoreEscuela
 {
     
@@ -16,9 +18,21 @@ namespace CoreEscuela
            Printer.DibujarTitulo("Bienvenidos a la Escuela");
           
            ImprimirCursosEscuela(engine.Escuela);
-            int dummy = 0;
-            var listaObjetos = engine.GetObjetoEscuela ( );
+           Dictionary<int,string> diccionario = new Dictionary<int, string>();
+            diccionario.Add(10,"JuanK");
+            diccionario.Add(23,"Lorem Ipsum");
 
+            foreach (var keyValuePair in diccionario)
+            {
+                WriteLine($"Key:{keyValuePair.Key} valor:{keyValuePair.Value}");
+            }
+
+            Printer.DibujarTitulo("Otro diccionario");
+
+            var dic = new Dictionary<string, string>();
+
+            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
+            WriteLine(dic["Luna"]);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
