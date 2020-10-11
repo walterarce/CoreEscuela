@@ -26,12 +26,52 @@ namespace CoreEscuela.Entidades
             
             
         }
-        public Dictionary<string,IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
-        {
-            var diccionario=new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
 
-            diccionario.Add("Escuela",new[] {Escuela});
-            diccionario.Add("Cursos", Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+        public void ImprimirDiccionario(Dictionary<LlavesDiccionario,IEnumerable<ObjetoEscuelaBase>> dic)
+        {
+            foreach (var obj in dic)
+            {
+                Console.WriteLine(obj);
+                foreach (var val in obj.Value)
+                {
+                    Console.WriteLine(val);
+                }
+                
+            }
+        }
+        public Dictionary<LlavesDiccionario,IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
+        {
+            
+            var diccionario=new Dictionary<LlavesDiccionario, IEnumerable<ObjetoEscuelaBase>>();
+
+            diccionario.Add(LlavesDiccionario.Escuela,new[] {Escuela});
+            diccionario.Add(LlavesDiccionario.Cursos, 
+                   Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            var listatmp = new List<Evaluacion>();
+            var listatmpas = new List<Asignatura>();
+            var listatmpal = new List<Alumno>();
+            foreach (var cur in Escuela.Cursos)
+            {
+                
+                listatmpas.AddRange(cur.Asignaturas);
+
+                listatmpal.AddRange(cur.Alumnos);
+      
+                    
+                        foreach (var alum in cur.Alumnos)
+                        {
+                            listatmp.AddRange(alum.Evaluaciones);
+                        }
+                         
+                
+                
+            }
+             diccionario.Add(LlavesDiccionario.Evaluaciones, 
+                                listatmp.Cast<ObjetoEscuelaBase>());
+             diccionario.Add(LlavesDiccionario.Asignaturas, 
+                                listatmpas.Cast<ObjetoEscuelaBase>());
+             diccionario.Add(LlavesDiccionario.Alumnos, 
+                                listatmpal.Cast<ObjetoEscuelaBase>());                   
 
             return diccionario;
         }

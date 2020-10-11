@@ -19,20 +19,16 @@ namespace CoreEscuela
           
            ImprimirCursosEscuela(engine.Escuela);
            Dictionary<int,string> diccionario = new Dictionary<int, string>();
-            diccionario.Add(10,"JuanK");
-            diccionario.Add(23,"Lorem Ipsum");
+
 
             foreach (var keyValuePair in diccionario)
             {
                 WriteLine($"Key:{keyValuePair.Key} valor:{keyValuePair.Value}");
             }
 
-            Printer.DibujarTitulo("Otro diccionario");
+             var dictmp = engine.GetDiccionarioObjetos();
 
-            var dic = new Dictionary<string, string>();
-
-            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
-            WriteLine(dic["Luna"]);
+             engine.ImprimirDiccionario(dictmp);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
