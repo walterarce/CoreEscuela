@@ -119,7 +119,7 @@ namespace CoreEscuela.Entidades
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                                Nota = (float)(5 * rnd.NextDouble()),
+                                Nota = MathF.Round((float)(5 * rnd.NextDouble()),2),
                                 Alumno= alumno
                             };
                             alumno.Evaluaciones.Add(ev)  ;
