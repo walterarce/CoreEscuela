@@ -3,6 +3,7 @@ using static System.Console;
 using CoreEscuela.Util;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace CoreEscuela
 {
@@ -11,7 +12,9 @@ namespace CoreEscuela
     {
         static void Main(string[] args)
         {
-            //Printer.WelcomeMusic();
+
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o,s) => Printer.Beep(1000,1000,2);
             var engine = new EscuelaEngine();
             engine.Inicializar();
             
@@ -28,6 +31,13 @@ namespace CoreEscuela
              var dictmp = engine.GetDiccionarioObjetos();
 
              engine.ImprimirDiccionario(dictmp,true);
+        }
+
+        private static void AccionDelEvento(object sender, EventArgs e)
+        {
+           Printer.DibujarTitulo("Saliendo");
+           Printer.Beep(3000,1000,3);
+           WriteLine("Salio...");
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
