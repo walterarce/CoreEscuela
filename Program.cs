@@ -25,6 +25,7 @@ namespace CoreEscuela.App
 
            var evalList=  reporteador.GetListaEvaluaciones();
            var listaasig = reporteador.GetListaAsignaturas();
+           var listaevalxasig = reporteador.GetDiccEvaluacionesXAsignatura();
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)

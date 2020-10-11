@@ -49,9 +49,9 @@ namespace CoreEscuela.App
               foreach (var asig in listaAsig)
               {
                   var evalasig = from Evaluacion eval in listaEval
-                                where eval.Asignatura.Nombre == asig
+                                where eval.Asignatura.Nombre == asig && eval.Nota >= 4f
                                 select eval;
-                                
+
                   dicRta.Add(asig,evalasig);
               }
               return dicRta;
