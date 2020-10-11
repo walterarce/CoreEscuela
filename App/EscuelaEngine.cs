@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreEscuela.Util;
 
 namespace CoreEscuela.Entidades
 {
@@ -27,14 +28,19 @@ namespace CoreEscuela.Entidades
             
         }
 
-        public void ImprimirDiccionario(Dictionary<LlavesDiccionario,IEnumerable<ObjetoEscuelaBase>> dic)
+        public void ImprimirDiccionario(Dictionary<LlavesDiccionario,IEnumerable<ObjetoEscuelaBase>> dic,
+        bool imprimirEval=false)
         {
             foreach (var obj in dic)
             {
-                Console.WriteLine(obj);
+                Printer.DibujarTitulo(obj.Key.ToString());
+                
                 foreach (var val in obj.Value)
                 {
-                    Console.WriteLine(val);
+                    if(imprimirEval && val is Evaluacion)
+                      Console.WriteLine(val);
+                    else if (!(val is Evaluacion))
+                        Console.WriteLine(val);
                 }
                 
             }
