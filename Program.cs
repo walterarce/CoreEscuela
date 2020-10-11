@@ -5,7 +5,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-namespace CoreEscuela
+
+namespace CoreEscuela.App
 {
     
     class Program
@@ -13,24 +14,16 @@ namespace CoreEscuela
         static void Main(string[] args)
         {
 
-            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
-            AppDomain.CurrentDomain.ProcessExit += (o,s) => Printer.Beep(1000,1000,2);
+           // AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+        
             var engine = new EscuelaEngine();
             engine.Inicializar();
             
            Printer.DibujarTitulo("Bienvenidos a la Escuela");
           
-           Dictionary<int,string> diccionario = new Dictionary<int, string>();
-
-
-            foreach (var keyValuePair in diccionario)
-            {
-                WriteLine($"Key:{keyValuePair.Key} valor:{keyValuePair.Value}");
-            }
-
-             var dictmp = engine.GetDiccionarioObjetos();
-
-             engine.ImprimirDiccionario(dictmp,true);
+           var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
+            reporteador.GetListaEvaluaciones();
+           
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
