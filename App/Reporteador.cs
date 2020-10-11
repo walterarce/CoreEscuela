@@ -19,7 +19,7 @@ namespace CoreEscuela.App
           {
 
            
-              if (_diccionario.TryGetValue(LlavesDiccionario.Escuela, out IEnumerable<ObjetoEscuelaBase> lista ))
+              if (_diccionario.TryGetValue(LlavesDiccionario.Evaluaciones, out IEnumerable<ObjetoEscuelaBase> lista ))
               {
                  return lista.Cast<Evaluacion>();
               }
@@ -27,6 +27,16 @@ namespace CoreEscuela.App
                   return new List<Evaluacion>();
               }
 
+          }
+
+          public IEnumerable<Asignatura> GetListaAsignaturas()
+          {
+              var listaEvaluaciones = GetListaEvaluaciones();
+
+              return from ev in listaEvaluaciones
+                        where ev.Nota >= 3.0f
+                        select ev.Asignatura;
+              
           }
     }
 }

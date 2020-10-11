@@ -22,7 +22,8 @@ namespace CoreEscuela.App
            Printer.DibujarTitulo("Bienvenidos a la Escuela");
           
            var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
-            reporteador.GetListaEvaluaciones();
+           
+           var evalList=  reporteador.GetListaEvaluaciones();
            
         }
 
