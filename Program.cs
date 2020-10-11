@@ -1,24 +1,37 @@
 ﻿using CoreEscuela.Entidades;
 using static System.Console;
 using CoreEscuela.Util;
+using System.Linq;
+using System.Collections.Generic;
+using System;
 
-namespace CoreEscuela
+
+namespace CoreEscuela.App
 {
     
     class Program
     {
         static void Main(string[] args)
         {
-            //Printer.WelcomeMusic();
+
+           // AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+        
             var engine = new EscuelaEngine();
             engine.Inicializar();
             
            Printer.DibujarTitulo("Bienvenidos a la Escuela");
           
-           ImprimirCursosEscuela(engine.Escuela);
+           var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
+           
+           var evalList=  reporteador.GetListaEvaluaciones();
+           
+        }
 
-            var listaobjetos = engine.GetObjetoEscuela();
-
+        private static void AccionDelEvento(object sender, EventArgs e)
+        {
+           Printer.DibujarTitulo("Saliendo");
+           Printer.Beep(3000,1000,3);
+           WriteLine("Salio...");
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)

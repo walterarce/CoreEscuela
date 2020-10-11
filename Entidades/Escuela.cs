@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CoreEscuela.Util;
 
 namespace CoreEscuela.Entidades
 {
-    public class Escuela : ObjetoEscuelaBase
+    public class Escuela : ObjetoEscuelaBase, ILugar
     {
 
       
@@ -25,6 +26,16 @@ namespace CoreEscuela.Entidades
             return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela} {System.Environment.NewLine} Pais: {Pais}, Ciudad:{Ciudad}";
         }
 
-       
+        public void LimpiarLugar()
+        {
+           Printer.DibujarLinea(10);
+           Console.WriteLine("Limpiando....");
+           foreach (var curso in Cursos)
+           {
+               curso.LimpiarLugar();
+           }
+           Printer.Beep(15000,cantidad:3);
+           Printer.DibujarTitulo($"Escuela {Nombre} Limpia");
+        }
     }
 }
