@@ -37,10 +37,30 @@ namespace CoreEscuela.Entidades
                 
                 foreach (var val in obj.Value)
                 {
-                    if(imprimirEval && val is Evaluacion)
-                      Console.WriteLine(val);
-                    else if (!(val is Evaluacion))
-                        Console.WriteLine(val);
+                    switch (obj.Key)
+                    {
+                        case LlavesDiccionario.Evaluaciones:
+                          if(imprimirEval)
+                            Console.WriteLine("Escuela:"+val);
+                        break;
+                        case LlavesDiccionario.Alumnos:
+                            Console.WriteLine("Alumno:"+val.Nombre);
+                        break;
+                         case LlavesDiccionario.Cursos:
+                         var cursotmp = val as Curso;
+                         if(cursotmp != null)
+                            {
+                                int count = ((Curso)val).Alumnos.Count;
+                                Console.WriteLine("Curso:"+ val.Nombre + "Cantidad Alumnos:"+ count);
+                            }
+                          
+                        break;
+                        default:
+                             Console.WriteLine(val);
+                        break;
+                    }
+
+                   
                 }
                 
             }

@@ -17,7 +17,6 @@ namespace CoreEscuela
             
            Printer.DibujarTitulo("Bienvenidos a la Escuela");
           
-           ImprimirCursosEscuela(engine.Escuela);
            Dictionary<int,string> diccionario = new Dictionary<int, string>();
 
 
