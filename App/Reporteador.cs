@@ -15,19 +15,18 @@ namespace CoreEscuela.App
             _diccionario = dicObsEsc;
           }
 
-          public IEnumerable<Escuela> GetListaEvaluaciones()
+          public IEnumerable<Evaluacion> GetListaEvaluaciones()
           {
 
-               IEnumerable<Escuela> rta;
+           
               if (_diccionario.TryGetValue(LlavesDiccionario.Escuela, out IEnumerable<ObjetoEscuelaBase> lista ))
               {
-                  rta= lista.Cast<Escuela>();
+                 return lista.Cast<Evaluacion>();
               }
               {
-                  rta = null;
+                  return new List<Evaluacion>();
               }
 
-              return rta;
           }
     }
 }
