@@ -28,15 +28,55 @@ namespace CoreEscuela.App
               }
 
           }
-
-          public IEnumerable<Asignatura> GetListaAsignaturas()
+          public IEnumerable<string> GetListaAsignaturas()
           {
-              var listaEvaluaciones = GetListaEvaluaciones();
+              return GetListaAsignaturas( out var dummy);
+          }
+          public IEnumerable<string> GetListaAsignaturas(
+              out IEnumerable<Evaluacion>  listaEvaluaciones)
+          {
+               listaEvaluaciones = GetListaEvaluaciones();
 
-              return from ev in listaEvaluaciones
-                        where ev.Nota >= 3.0f
-                        select ev.Asignatura;
+              return (from Evaluacion ev in listaEvaluaciones
+                        select ev.Asignatura.Nombre).Distinct(); 
               
+          }
+
+          public Dictionary<string, IEnumerable<Evaluacion>> GetDiccEvaluacionesXAsignatura()
+          {
+              var dicRta =  new Dictionary<string, IEnumerable<Evaluacion>>();
+              var listaAsig = GetListaAsignaturas(out var listaEval);
+              foreach (var asig in listaAsig)
+              {
+                  var evalasig = from Evaluacion eval in listaEval
+                                where eval.Asignatura.Nombre == asig && eval.Nota >= 4f
+                                select eval;
+
+                  dicRta.Add(asig,evalasig);
+              }
+              return dicRta;
+          }
+          public Dictionary<string, IEnumerable<object>> GetPromedioAlumnoPorAsignatura()
+          {
+              var rta = new Dictionary<string, IEnumerable<object>>();
+
+              var DiccEvXAsignatura = GetDiccEvaluacionesXAsignatura();
+
+              foreach (var asigConEval in DiccEvXAsignatura)
+              {
+                  var promediosAlumnos = from eval in asigConEval.Value
+                  group eval by new  {eval.Alumno.UniqueId, Alunombre =  eval.Alumno.Nombre, eval.Nota}
+                  into grupoEvalAlumno
+                                select new AlumnoPromedio{
+
+                                   alumnoid = grupoEvalAlumno.Key.UniqueId,
+                                   alumnonombre = grupoEvalAlumno.Key.Alunombre,
+                                   Promedio = grupoEvalAlumno.Average(evalu => evalu.Nota)
+                                } ;
+
+                            rta.Add(asigConEval.Key, promediosAlumnos);
+              }
+              return rta;
           }
     }
 }
