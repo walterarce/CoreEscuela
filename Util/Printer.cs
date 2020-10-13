@@ -20,7 +20,10 @@ namespace CoreEscuela.Util
             
 
         }
-
+        public static void PresioneEnter()
+        {
+            WriteLine("Presione Enter Para Continuar...");
+        }
         public static void Beep(int hz=2000, int tiempo=500, int cantidad = 1)
         {
             while (cantidad > 0)
